@@ -14,7 +14,7 @@
                                 <h3>Add Product</h3>
                             </div>
                             <div class="card-body">
-                                <form action="/store" method="post" enctype="multipart/form-data">
+                                <form action="products/store" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
                                         <label for="name">Product Name</label>

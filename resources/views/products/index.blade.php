@@ -181,9 +181,6 @@
     <script src="{{ asset('asset/extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
     <script src="{{ asset('asset/extra-libs/multicheck/jquery.multicheck.js') }}"></script>
     <script src="{{ asset('asset/extra-libs/DataTables/datatables.min.js') }}"></script>
-    <script src="{{ asset('js/order.js') }}"></script>
-
-
 
 
     @stack('scripts')

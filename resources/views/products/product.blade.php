@@ -8,7 +8,7 @@
             </div>
 
             <div class="col-6 mb-2 text-right">
-                <a class="btn btn-primary" href="{{ url('/add') }}"><i class="fas fa-plus"></i></a>
+                <a class="btn btn-primary" href="{{ url('products/add') }}"><i class="fas fa-plus"></i></a>
             </div>
         </div>
     </div>
@@ -19,10 +19,10 @@
                     <div class="card-body">
                         <hr>
                         <div class="table-responsive">
-                            <table class="table table-hover table-light ">
+                            <table class="table table-hover table-light text-center">
                                 <thead class="thead-dark ">
                                     <tr>
-                                        <th>Product_Id</th>
+                                        <th>ID</th>
                                         <th>Image</th>
                                         <th>Product Name</th>
                                         <th>Product Description</th>
@@ -48,14 +48,13 @@
                                                 <div class="row text-center">
                                                     <div class="col-5">
                                                         <!-- Edit button -->
-                                                        <a href="{{url("/edit/$cd->id")}}" class="btn btn-primary btn-sm text-light">Edit</a>
+                                                        <a href="{{url("products/edit/$cd->id")}}" class="btn btn-primary m-1"><i class=" far fa-edit"></i></a>
                                                     </div>
                                                     <div class="col-5 offset-1">
                                                         <!-- Delete button -->
-
-                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                        <button type="button" class="btn btn-danger m-1"
                                                             data-toggle="modal"
-                                                            data-target="#demoModal{{ $cd->id }}">Del</button>
+                                                            data-target="#demoModal{{ $cd->id }}"><i class=" far fa-trash-alt"></i></button>
                                                     </div>
                                                 </div>
 
@@ -63,7 +62,7 @@
                                             </td>
 
                                             <!-- Delete Modal -->
-                                            <form action="{{ url('/delete/' . $cd->id) }}" method="post">
+                                            <form action="{{ url('/products/' . $cd->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <div class="modal fade" tabindex="-1" role="dialog"

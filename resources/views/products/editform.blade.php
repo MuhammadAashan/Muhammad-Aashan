@@ -15,7 +15,7 @@
                             <h3>Edit Product</h3>
                         </div>
                         <div class="card-body">
-                            <form action="{{ url('/update/' . $products->id) }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ url('/products/' . $products->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">

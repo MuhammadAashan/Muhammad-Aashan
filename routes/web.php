@@ -17,28 +17,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','App\Http\Controllers\ProductController@index');
 
 
+Route::group(['prefix' => 'products'], function () {
+    // Route to display product cards
+    Route::get('/', 'App\Http\Controllers\ProductController@displayProduct');
 
-//route to display add product form
-Route::get('/add','App\Http\Controllers\ProductController@create');
+    // Route to display add product form
+    Route::get('/add', 'App\Http\Controllers\ProductController@create');
 
+    // Route to display product
+    Route::get('/list', 'App\Http\Controllers\ProductController@displayProduct');
 
-//route to display product
-Route::get('/products','App\Http\Controllers\ProductController@displayProduct');
+    // Route to store product in the database
+    Route::post('/store', 'App\Http\Controllers\ProductController@store');
+    Route::get('/store', 'App\Http\Controllers\ProductController@displayProduct');
 
+    // Route to delete specific product from the database
+    Route::delete('/{id}', 'App\Http\Controllers\ProductController@destroy');
 
+    // Route to show edit product form
+    Route::get('/edit/{id}', 'App\Http\Controllers\ProductController@edit');
 
-// route to store product in the database
-Route::post('/store','App\Http\Controllers\ProductController@store');
-Route::get('/store','App\Http\Controllers\ProductController@displayProduct');
-
-
-// route to delete specific product from database
-Route::Delete('/delete/{id}','App\Http\Controllers\ProductController@destroy');
-
-
-// route to show edit product form
-Route::get('/edit/{id}', 'App\Http\Controllers\ProductController@edit');
-
-
-//route to update product detail
-Route::put('/update/{id}', 'App\Http\Controllers\ProductController@update');
+    // Route to update product detail
+    Route::put('/{id}', 'App\Http\Controllers\ProductController@update');
+});
