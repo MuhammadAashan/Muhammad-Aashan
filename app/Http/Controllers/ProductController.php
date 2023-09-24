@@ -15,7 +15,7 @@ class ProductController extends Controller
       public function index()
        {
            $products = Product::paginate(5); // You can adjust the number of products per page
-           return view('products.index', compact('products'));
+           return view('products.productcard', compact('products'));
        }
 
 
@@ -62,5 +62,50 @@ class ProductController extends Controller
            $products = Product::paginate(5); // You can adjust the number of products per page
            return view('products.product', compact('products'));
        }
+
+
+
+       // function to edit product
+       public function edit($id)
+       {
+        $products = Product::findOrFail($id); // Retrieve the product by ID
+        return view('products.editform', compact('products'));
+       }
+
+
+
+       // function to update product
+       public function update(Request $request, $id)
+       {
+           $validatedData = $request->validate([
+               'name' => 'required|string|max:255',
+               'description' => 'required|string',
+               'price' => 'required|numeric',
+               'quantity' => 'required|integer',
+           ]);
+
+           $product = Product::findOrFail($id); // Retrieve the product by ID
+           $product->update($validatedData); // Update the product with new data
+
+
+           $products = Product::paginate(5); // You can adjust the number of products per page
+           return view('products.product', compact('products'));
+       }
+
+
+
+       //function to delete product
+       public function destroy($id)
+       {
+        $product = Product::findOrFail($id); // Retrieve the product by ID
+        $product->delete(); // Delete the product
+
+        $products = Product::paginate(5); // You can adjust the number of products per page
+        return view('products.product', compact('products'));
+     }
+
+
+
+
 
 }

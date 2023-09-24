@@ -186,36 +186,6 @@
 
 
 
-    <!-------edit category model script for editing and sending value to model--------->
-    <script>
-
-        $('#editmodel').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var cid = button.data('catid')
-            var cname = button.data('catname')
-            var cdesc = button.data('catdesc')
-            var modal = $(this)
-            // modal.find('.modal-title').text('New message to ' + recipient)
-
-            modal.find('.modal-body input').val(cname)
-            modal.find('.modal-body textarea').val(cdesc)
-            modal.find('.modal-body #catid').val(cid)
-
-
-        });
-    </script>
-
-    <script>
-        $('#demoModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var cid = button.data('catid')
-            var modal = $(this)
-            modal.find('.modal-body input').val(cid)
-
-
-        });
-    </script>
-
     @stack('scripts')
 
 </body>
