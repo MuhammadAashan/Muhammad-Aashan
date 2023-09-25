@@ -51,6 +51,7 @@ class ProductController extends Controller
             'quantity' => 'required|integer',
             'productimage' => 'required|image|mimes:jpeg,png,jpg,gif',
         ]);
+
         if ($validatedData->fails()) {
             // Validation failed
             return redirect()->back()->withErrors($validatedData)->withInput();
@@ -60,12 +61,18 @@ class ProductController extends Controller
             $image= $request->file('productimage');
             $filename = uniqid() . '_' . $image->getClientOriginalName();
             $path= $request->file('productimage')->storeAs('public/images',$filename);
-            $validatedData['image'] = 'images/'.$filename;
+           // $validatedData['image'] = 'images/'.$filename;
            }
 
 
            try {
-            Product::create($validatedData);
+            Product::create([
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+                'price' => $request->input('price'),
+                'quantity' => $request->input('quantity'),
+                'image'=>'images/'.$filename,
+            ]);
         } catch (\Exception $e) {
             // Handle any other exceptions that may occur during product creation
             return redirect()->back()->with('error', 'An error occurred while adding the product.');

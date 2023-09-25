@@ -33,6 +33,7 @@ Route::group(['prefix' => 'products'], function () {
 
     // Route to delete specific product from the database
     Route::delete('/{id}', 'App\Http\Controllers\ProductController@destroy');
+    Route::get('/{id}', 'App\Http\Controllers\ProductController@displayProduct');
 
     // Route to show edit product form
     Route::get('/edit/{id}', 'App\Http\Controllers\ProductController@edit');

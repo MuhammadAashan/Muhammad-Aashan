@@ -95,7 +95,9 @@
                                     @endforeach
                                 @endif
                             </table>
-                            {{ $products->onEachSide(5)->links() }} {{-- Display pagination links --}}
+                            <div class="pagination">
+                           {{ $products->links() }} {{-- Display pagination links --}}
+                        </div>
                         </div>
                     </div>
                 </div>

@@ -14,14 +14,45 @@
     <link href="{{ asset('asset/libs/flot/css/float-chart.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('asset/extra-libs/multicheck/multicheck.css') }}">
-    <link href="{{ asset('asset/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
+
 
     <!--vite(['resources/sass/app.scss', 'resources/js/app.js'])-->
     <!--bootstrap Icon Linkage---->
     <link rel="stylesheet"
         href="{{ url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css') }}">
 
+
+    <style>
+    /* Add styles to the container div */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Adjust the margin as needed */
+}
+
+/* Style the individual pagination links */
+.pagination ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px; /* Adjust the gap between pagination links as needed */
+}
+
+.pagination ul li {
+    display: inline-block;
+    background-color: #f4f4f4; /* Background color for each link */
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Style the active page link */
+.pagination ul li.active {
+    background-color: #007bff; /* Active page link background color */
+    color: #fff; /* Active page link text color */
+}
+
+</style>
 
 
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -151,37 +182,9 @@
     <script src="{{ asset('asset/libs/popper.js/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('asset/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('asset/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
-    <script src="{{ asset('asset/extra-libs/sparkline/sparkline.js') }}"></script>
-    <!--Wave Effects -->
-    <script src="{{ asset('dist/js/waves.js') }}"></script>
-    <!--Menu sidebar -->
-    <script src="{{ asset('dist/js/sidebarmenu.js') }}"></script>
+
     <!--Custom JavaScript -->
     <script src="{{ asset('dist/js/custom.min.js') }}"></script>
-    <!--This page JavaScript -->
-    <!-- <script src="dist/js/pages/dashboards/dashboard1.js"></script> -->
-    <!-- Charts js Files -->
-    <script src="{{ asset('asset/libs/flot/excanvas.js') }}"></script>
-    <script src="{{ asset('asset/libs/flot/jquery.flot.js') }}"></script>
-    <script src="{{ asset('asset/libs/flot/jquery.flot.pie.js') }}"></script>
-    <script src="{{ asset('asset/libs/flot/jquery.flot.time.js') }}"></script>
-    <script src="{{ asset('asset/libs/flot/jquery.flot.stack.js') }}"></script>
-    <script src="{{ asset('asset/libs/flot/jquery.flot.crosshair.js') }}"></script>
-    <script src="{{ asset('asset/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
-    <script src="{{ asset('dist/js/pages/chart/chart-page-init.js') }}"></script>
-
-    <script src="{{ url('https://cdn.jsdelivr.net/npm/chart.js') }}"></script>
-    <script src="{{ url('https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js') }}"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="{{ url('https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js') }}"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-
-    <script src="{{ asset('asset/extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
-    <script src="{{ asset('asset/extra-libs/multicheck/jquery.multicheck.js') }}"></script>
-    <script src="{{ asset('asset/extra-libs/DataTables/datatables.min.js') }}"></script>
-
 
     @stack('scripts')
 
