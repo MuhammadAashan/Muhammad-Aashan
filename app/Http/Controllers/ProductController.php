@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Http\File;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
+
 
 class ProductController extends Controller
 {
@@ -40,14 +43,18 @@ class ProductController extends Controller
        // Store the submitted product data in the database
        public function store(Request $request)
        {
-           $validatedData = $request->validate([
-               'name' => 'required|string|max:255',
-               'description' => 'required|string',
-               'price' => 'required|numeric',
-               'quantity' => 'required|integer',
-               'productimage' => 'required|image|mimes:jpeg,png,jpg,gif',
-           ]);
 
+        $validatedData =Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'quantity' => 'required|integer',
+            'productimage' => 'required|image|mimes:jpeg,png,jpg,gif',
+        ]);
+        if ($validatedData->fails()) {
+            // Validation failed
+            return redirect()->back()->withErrors($validatedData)->withInput();
+        }
            // Handle image upload and store it in the 'public' disk
            if ($request->hasFile('productimage')) {
             $image= $request->file('productimage');
@@ -57,10 +64,17 @@ class ProductController extends Controller
            }
 
 
-           Product::create($validatedData);
+           try {
+            Product::create($validatedData);
+        } catch (\Exception $e) {
+            // Handle any other exceptions that may occur during product creation
+            return redirect()->back()->with('error', 'An error occurred while adding the product.');
+        }
+
 
            $products = Product::paginate(5); // You can adjust the number of products per page
            return view('products.product', compact('products'));
+
        }
 
 
@@ -70,27 +84,45 @@ class ProductController extends Controller
        {
         $products = Product::findOrFail($id); // Retrieve the product by ID
         return view('products.editform', compact('products'));
+
        }
 
 
 
        // function to update product
        public function update(Request $request, $id)
-       {
-           $validatedData = $request->validate([
-               'name' => 'required|string|max:255',
-               'description' => 'required|string',
-               'price' => 'required|numeric',
-               'quantity' => 'required|integer',
-           ]);
+{
+    $validatedData = Validator::make($request->all(), [
+        'name' => 'required|string|max:255',
+        'description' => 'required|string',
+        'price' => 'required|numeric',
+        'quantity' => 'required|integer',
+    ]);
 
-           $product = Product::findOrFail($id); // Retrieve the product by ID
-           $product->update($validatedData); // Update the product with new data
+    if ($validatedData->fails()) {
+        // Validation failed
+        return redirect()->back()->withErrors($validatedData)->withInput();
+    }
 
+    try {
+        $product = Product::findOrFail($id); // Retrieve the product by ID
+        $product->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'quantity' => $request->input('quantity'),
+        ]);
 
-           $products = Product::paginate(5); // You can adjust the number of products per page
-           return view('products.product', compact('products'));
-       }
+        // You can also handle the image update logic here if needed
+
+        $products = Product::paginate(5); // You can adjust the number of products per page
+        return view('products.product', compact('products'));
+    } catch (\Exception $e) {
+        // Handle any exceptions that may occur during product update
+        return redirect()->back()->with('error', 'An error occurred while updating the product.');
+    }
+}
+
 
 
 

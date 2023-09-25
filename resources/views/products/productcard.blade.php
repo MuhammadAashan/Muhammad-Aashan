@@ -2,6 +2,14 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
+            <style>
+                img {
+                    width: 200px;
+                    height: 300px;
+                    object-fit: cover;
+                }
+            </style>
+
             @if ($products->isEmpty())
                 <p>No products available.</p>
             @else

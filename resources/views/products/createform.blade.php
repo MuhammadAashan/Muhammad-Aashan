@@ -1,6 +1,5 @@
 @extends('products.index')
 @section('content')
-
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
@@ -14,36 +13,46 @@
                                 <h3>Add Product</h3>
                             </div>
                             <div class="card-body">
-                                <form action="products/store" method="post" enctype="multipart/form-data">
+                                <form action="{{url('products/store')}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
                                         <label for="name">Product Name</label>
                                         <input type="text" class="form-control" id="name" name="name"
                                             placeholder="Enter Product Name">
-                                        <div class="invalid-feedback">Product Name Can't Be Empty</div>
+                                    @if($errors->has('name'))
+                                            <div class="error text-danger">{{ $errors->first('name') }}</div>
+                                    @endif
                                     </div>
                                     <div class="form-group">
                                         <label for="desc">Product Description</label>
                                         <textarea type="text" class="form-control" id="description" name="description" placeholder="Enter Product Detail"></textarea>
-                                        <div class="invalid-feedback">Product Description Can't Be Empty</div>
+                                    @if($errors->has('description'))
+                                        <div class="error text-danger">{{ $errors->first('description') }}</div>
+                                    @endif
                                     </div>
 
                                     <div class="form-group">
                                         <label for="price">Price</label>
                                         <input type="text" class="form-control" id="price" name="price"
                                             placeholder="Enter Product Price">
-                                        <div class="invalid-feedback">Product Price Can't Be Empty</div>
+                                        @if($errors->has('price'))
+                                            <div class="error text-danger">{{ $errors->first('price') }}</div>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label for="price">Quantity</label>
                                         <input type="text" class="form-control" id="quantity" name="quantity"
                                             placeholder="Enter Product Quantity">
-                                        <div class="invalid-feedback">Product Price Can't Be Empty</div>
+                                        @if($errors->has('quantity'))
+                                            <div class="error text-danger">{{ $errors->first('quantity') }}</div>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label for="productimage">Product Image</label>
                                         <input type="file" id="productimage" name="productimage">
-                                        <div class="invalid-feedback">File Format Not Supported</div>
+                                        @if($errors->has('productimage'))
+                                        <div class="error text-danger">{{ $errors->first('productimage') }}</div>
+                                        @endif
                                     </div>
 
                                     <button class="btn btn-dark mt-5 mx-auto d-block" type="submit">Add
@@ -56,5 +65,4 @@
             </div>
         </div>
     </div>
-
 @endsection

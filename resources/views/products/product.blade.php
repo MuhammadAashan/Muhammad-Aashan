@@ -48,13 +48,15 @@
                                                 <div class="row text-center">
                                                     <div class="col-5">
                                                         <!-- Edit button -->
-                                                        <a href="{{url("products/edit/$cd->id")}}" class="btn btn-primary m-1"><i class=" far fa-edit"></i></a>
+                                                        <a href="{{ url("products/edit/$cd->id") }}"
+                                                            class="btn btn-primary m-1"><i class=" far fa-edit"></i></a>
                                                     </div>
                                                     <div class="col-5 offset-1">
                                                         <!-- Delete button -->
                                                         <button type="button" class="btn btn-danger m-1"
                                                             data-toggle="modal"
-                                                            data-target="#demoModal{{ $cd->id }}"><i class=" far fa-trash-alt"></i></button>
+                                                            data-target="#demoModal{{ $cd->id }}"><i
+                                                                class=" far fa-trash-alt"></i></button>
                                                     </div>
                                                 </div>
 
